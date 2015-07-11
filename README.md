@@ -28,7 +28,8 @@ Output would be `ABAABABAABAABABAABABAABAABABAABAAB`.
 
 ![Plant Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/plant_9.png)
 
-For some example boilerplate code of setting up graphical output, see `examples/draw_plant.jl`.
+For some example boilerplate code of setting up graphical output, see [`examples/draw_plant.jl`](https://github.com/rawrgrr/LSystems.jl/blog/master/examples/draw_plant.jl).
+
 A snippet of sample code that draws the plant seen above:
 
 ```julia
