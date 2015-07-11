@@ -5,13 +5,18 @@ using DataStructures
 c = CairoRGBSurface(1024, 896);
 cr = CairoContext(c);
 
+save(cr);
+
 set_source_rgb(cr, 1.0, 1.0, 1.0);
 rectangle(cr, 0.0, 0.0, 1024.0, 896.0);
 fill(cr);
 
+restore(cr);
+save(cr);
+
 x, y, a, d = 64., 896., -pi / 6, 0.8
-move_to(cr, x, y);
 set_line_width(cr, 0.6);
+move_to(cr, x, y);
 
 plant_start = "X"
 plant_trans = Dict([('X', "F-[[X]+X]+F[+FX]-X"), ('F', "FF")])
@@ -40,5 +45,5 @@ for v in @task lindenmayer(plant_start, plant_trans, 9)
     end
 end
 
-stroke (cr);
+stroke(cr);
 write_to_png(c, "plant_9.png");
