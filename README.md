@@ -11,8 +11,11 @@ Lindenmayer Systems for [Julia](http://julialang.org/)
 Algae-growth from [Wikipedia](https://en.wikipedia.org/wiki/L-system#Example_1:_Algae).
 
 ```julia
+using LSystems
+
 algae_start = "A"
 algae_transition = Dict([('A', "AB"), ('B', "A")])
+
 for c in @task lindenmayer(algae_start, algae_transition, 7)
     print(c)
 end
@@ -25,7 +28,8 @@ Output would be `ABAABABAABAABABAABABAABAABABAABAAB`.
 
 ![Plant Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/plant_9.png)
 
-For some example boilerplate code of setting up graphical output, see `examples/draw_plant.jl`. A snippet of sample code that draws the above plant:
+For some example boilerplate code of setting up graphical output, see `examples/draw_plant.jl`.
+A snippet of sample code that draws the plant seen above:
 
 ```julia
 plant_start = "X"
