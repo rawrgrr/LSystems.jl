@@ -54,3 +54,11 @@ end
 
 stroke(cr)
 ```
+
+
+## TODO
+
+- [x] Initial implementation of a DOL-System
+- [x] Setup graphical examples
+- [ ] Add signature to take a function instead of a dictionary to determine the transition state (make dictionary version a call-through)
+- [ ] Tokenizer to allow for words instead of characters
