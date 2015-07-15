@@ -29,7 +29,10 @@ end
 
 s = Stack(Vector{Float64}) # [x, y, a]
 
-for v in @task lindenmayer(plant_start, plant_trans, 9)
+level = 9
+drawing_instructions = @task lindenmayer(plant_start, plant_trans, level)
+
+for v in drawing_instructions
     if v == 'F'
         x, y = determine_new_position(x, y, a, d)
         line_to(cr, x, y)
@@ -46,4 +49,4 @@ for v in @task lindenmayer(plant_start, plant_trans, 9)
 end
 
 stroke(cr);
-write_to_png(c, "plant_9.png");
+write_to_png(c, "plant_$level.png");

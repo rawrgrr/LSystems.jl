@@ -24,7 +24,7 @@ end
 Output would be `ABAABABAABAABABAABABAABAABABAABAAB`.
 
 
-## Graphical Example
+## Graphical Examples
 
 ![Plant Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/plant_9.png)
 
@@ -55,6 +55,7 @@ end
 stroke(cr)
 ```
 
+![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/hilbert_5.png)
 
 ## TODO
 
