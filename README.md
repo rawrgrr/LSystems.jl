@@ -52,7 +52,7 @@ for v in @task lindenmayer(plant_start, plant_trans, 9)
     end
 end
 
-stroke(cr)
+stroke(cr);
 ```
 
 For the full example, see [`examples/draw_plant.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_plant.jl).
@@ -78,7 +78,7 @@ for v in @task lindenmayer(hilbert_start, hilbert_trans, 6)
     end
 end
 
-stroke(cr)
+stroke(cr);
 ```
 
 For the full example, see [`examples/draw_hilbert.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_hilbert.jl).
@@ -93,7 +93,7 @@ cr = CairoContext(c);
 dragon_start = "A"
 dragon_trans = Dict([('A', "A+BF"), ('B', "FA-B")])
 
-for v in @task lindenmayer(dragon_start, dragon_trans, level)
+for v in @task lindenmayer(dragon_start, dragon_trans, 10)
     if v == 'F'
         x, y = determine_new_position(x, y, a, d)
         line_to(cr, x, y)
