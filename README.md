@@ -119,7 +119,7 @@ cr = CairoContext(c);
 koch_start = "F+F+F+F"
 koch_trans = Dict([('F', "F+F-F-FF+F+F-F")])
 
-for v in @lindenmayer(koch_start, koch_trans, 4)
+for v in @task lindenmayer(koch_start, koch_trans, 4)
     if v == 'F'
         x, y = determine_new_position(x, y, a, d)
         line_to(cr, x, y)
@@ -134,6 +134,36 @@ stroke(cr);
 ```
 
 For the full example, see [`examples/draw_koch.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_koch.jl)
+
+### Drawing a Sierpinski Curve
+![Sierpinski Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/sierpinski_4.png)
+
+```julia
+cr = CairoContext(c);
+
+sierpinski_start = "F+XF+F+XF"
+sierpinski_trans = Dict([('X', "XF-F+F-XF+F+XF-F+F-X")])
+
+for v in @task lindenmayer(sierpinski_start, sierpinski_trans, 4)
+    if v == 'F'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= 90
+    elseif v == '-'
+        a += 90
+    elseif v == '['
+        push!(s, [x, y, a])
+    elseif v == ']'
+        x, y, a = pop!(s)
+        move_to(cr, x, y)
+    end
+end
+
+stroke(cr);
+```
+
+For the full example, see [`examples/draw_sierpinski.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_sierpinski.jl)
 
 
 ## TODO
