@@ -57,32 +57,6 @@ stroke(cr);
 
 For the full example, see [`examples/draw_plant.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_plant.jl).
 
-### Drawing a Hilbert Curve
-
-![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/hilbert_6.png)
-
-```julia
-cr = CairoContext(c);
-
-hilbert_start = "A"
-hilbert_trans = Dict([('A', "-BF+AFA+FB-"), ('B', "+AF-BFB-FA+")])
-
-for v in @task lindenmayer(hilbert_start, hilbert_trans, 6)
-    if v == 'F'
-        x, y = determine_new_position(x, y, a, d)
-        line_to(cr, x, y)
-    elseif v == '+'
-        a -= pi / 2
-    elseif v == '-'
-        a += pi / 2
-    end
-end
-
-stroke(cr);
-```
-
-For the full example, see [`examples/draw_hilbert.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_hilbert.jl).
-
 ### Drawing a Dragon Curve
 
 ![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/dragon_10.png)
@@ -164,6 +138,32 @@ stroke(cr);
 ```
 
 For the full example, see [`examples/draw_sierpinski.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_sierpinski.jl)
+
+### Drawing a Hilbert Curve
+
+![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/hilbert_6.png)
+
+```julia
+cr = CairoContext(c);
+
+hilbert_start = "A"
+hilbert_trans = Dict([('A', "-BF+AFA+FB-"), ('B', "+AF-BFB-FA+")])
+
+for v in @task lindenmayer(hilbert_start, hilbert_trans, 6)
+    if v == 'F'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= pi / 2
+    elseif v == '-'
+        a += pi / 2
+    end
+end
+
+stroke(cr);
+```
+
+For the full example, see [`examples/draw_hilbert.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_hilbert.jl).
 
 
 ## TODO
