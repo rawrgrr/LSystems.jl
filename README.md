@@ -83,6 +83,31 @@ stroke(cr)
 
 For the full example, see [`examples/draw_hilbert.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_hilbert.jl).
 
+### Drawing a Dragon Curve
+
+![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/dragon_10.png)
+
+```julia
+cr = CairoContext(c);
+
+dragon_start = "A"
+dragon_trans = Dict([('A', "A+BF"), ('B', "FA-B")])
+
+for v in @task lindenmayer(dragon_start, dragon_trans, level)
+    if v == 'F'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= 90
+    elseif v == '-'
+        a += 90
+    end
+end
+
+stroke(cr);
+```
+
+For the full example, see [`examples/draw_dragon.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_dragon.jl)
 
 ## TODO
 
