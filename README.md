@@ -126,11 +126,6 @@ for v in @task lindenmayer(sierpinski_start, sierpinski_trans, 4)
         a -= 90
     elseif v == '-'
         a += 90
-    elseif v == '['
-        push!(s, [x, y, a])
-    elseif v == ']'
-        x, y, a = pop!(s)
-        move_to(cr, x, y)
     end
 end
 
