@@ -109,6 +109,33 @@ stroke(cr);
 
 For the full example, see [`examples/draw_dragon.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_dragon.jl)
 
+### Drawing a Koch Island
+
+![Koch Island Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/koch_4.png)
+
+```julia
+cr = CairoContext(c);
+
+koch_start = "F+F+F+F"
+koch_trans = Dict([('F', "F+F-F-FF+F+F-F")])
+
+for v in @lindenmayer(koch_start, koch_trans, 4)
+    if v == 'F'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= 90
+    elseif v == '-'
+        a += 90
+    end
+end
+
+stroke(cr);
+```
+
+For the full example, see [`examples/draw_koch.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_koch.jl)
+
+
 ## TODO
 
 - [x] Initial implementation of a DOL-System
