@@ -26,13 +26,13 @@ Output would be `ABAABABAABAABABAABABAABAABABAABAAB`.
 
 ## Graphical Examples
 
+### Drawing a Plant
+
 ![Plant Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/plant_9.png)
 
-For some example boilerplate code of setting up graphical output, see [`examples/draw_plant.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_plant.jl).
-
-A snippet of sample code that draws the plant seen above:
-
 ```julia
+cr = CairoContext(c);
+
 plant_start = "X"
 plant_trans = Dict([('X', "F-[[X]+X]+F[+FX]-X"), ('F', "FF")])
 
@@ -55,7 +55,34 @@ end
 stroke(cr)
 ```
 
-![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/hilbert_5.png)
+For the full example, see [`examples/draw_plant.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_plant.jl).
+
+### Drawing a Hilbert Curve
+
+![Hilbert Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/hilbert_6.png)
+
+```julia
+cr = CairoContext(c);
+
+hilbert_start = "A"
+hilbert_trans = Dict([('A', "-BF+AFA+FB-"), ('B', "+AF-BFB-FA+")])
+
+for v in @task lindenmayer(hilbert_start, hilbert_trans, 6)
+    if v == 'F'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= pi / 2
+    elseif v == '-'
+        a += pi / 2
+    end
+end
+
+stroke(cr)
+```
+
+For the full example, see [`examples/draw_hilbert.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_hilbert.jl).
+
 
 ## TODO
 
