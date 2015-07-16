@@ -109,7 +109,35 @@ stroke(cr);
 
 For the full example, see [`examples/draw_koch.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_koch.jl)
 
+### Drawing a Kristall Curve
+
+![Kristall Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/kristall_5.png)
+
+```julia
+cr = CairoContext(c);
+
+kristall_start = "F"
+kristall_trans = Dict([('F', "F+F--f+F-F++f-F"), ('f', "fff")])
+
+for v in @task lindenmayer(kristall_start, kristall_trans, 5)
+    if v == 'F' || v == 'f'
+        x, y = determine_new_position(x, y, a, d)
+        line_to(cr, x, y)
+    elseif v == '+'
+        a -= 90
+    elseif v == '-'
+        a += 90
+    end
+end
+
+stroke(cr);
+```
+
+For the full example, see [`examples/draw_koch.jl`](https://github.com/rawrgrr/LSystems.jl/blob/master/examples/draw_kristall.jl)
+
+
 ### Drawing a Sierpinski Curve
+
 ![Sierpinski Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/sierpinski_4.png)
 
 ```julia
