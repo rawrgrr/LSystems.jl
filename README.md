@@ -111,6 +111,7 @@ For the full example, see [`examples/draw_koch.jl`](https://github.com/rawrgrr/L
 
 ### Drawing a Kristall Curve
 
+<object data="https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/kristall_5.js.svg" type="image/svg+xml"></object>
 ![Kristall Curve Example Image](https://raw.githubusercontent.com/rawrgrr/LSystems.jl/master/examples/kristall_5.png)
 
 ```julia
